@@ -14,6 +14,7 @@ public class Transfer {
     //1转账，2收款
     private String opType;
     private String linkAccount;
+    private String linkUsername;
     //操作后余额
     private BigDecimal opBalance;
 
@@ -55,6 +56,14 @@ public class Transfer {
 
     public void setLinkAccount(String linkAccount) {
         this.linkAccount = linkAccount;
+    }
+
+    public String getLinkUsername() {
+        return linkUsername;
+    }
+
+    public void setLinkUsername(String linkUsername) {
+        this.linkUsername = linkUsername;
     }
 
     public BigDecimal getOpBalance() {

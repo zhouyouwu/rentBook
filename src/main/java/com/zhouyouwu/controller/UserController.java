@@ -5,15 +5,14 @@ import com.zhouyouwu.model.ResultObject;
 import com.zhouyouwu.model.User;
 import com.zhouyouwu.model.vo.LoginUser;
 import com.zhouyouwu.service.UserService;
+import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.Assert;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author Administrator
  */
+@Log4j
 @RestController
 public class UserController {
     @Autowired
@@ -38,6 +37,16 @@ public class UserController {
         }
 
         return ResultObject.ok("登录成功！");
+    }
+
+    @GetMapping("getUser.do")
+    public Object getUser(@RequestParam(value="searchParam", required = false) String searchParam,
+                          @RequestParam(value = "page", defaultValue = "1") Integer page,
+                          @RequestParam(value = "size", defaultValue = "10") Integer size){
+
+        log.info("查询全部用户...");
+
+        return ResultObject.ok(userService.getUser(searchParam, page, size));
     }
 
 }
