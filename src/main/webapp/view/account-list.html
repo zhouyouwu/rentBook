@@ -6,7 +6,13 @@
     <link href="../static/plugins/layui-2.6.8/css/layui.css" rel="stylesheet"/>
 </head>
 <body>
-<table id="accountData" class="layui-table">
+<button type="button" class="layui-btn layui-btn-sm" id="addBtn">新增</button>
+<div class="layui-input-inline">
+    <input type="text" placeholder="请输入用户名或账号" class="layui-input" id="searchInput">
+</div>
+<button type="button" class="layui-btn layui-btn-sm layui-btn-normal" id="searchBtn">查询</button>
+
+<table id="accountData" class="layui-table" lay-filter="accountData">
 
 </table>
 </body>
@@ -15,15 +21,8 @@
 <script src="../static/js/account-list.js"></script>
 
 <script type="text/html" id="tableButton">
-    <button type="button" class="layui-btn layui-btn-sm layui-btn-danger">删除</button>
-    <button type="button" class="layui-btn layui-btn-sm layui-btn-normal">修改</button>
-    <button type="button" class="layui-btn layui-btn-sm layui-btn-warm">使用账号</button>
-</script>
-<script type="text/html" id="toolBar">
-    <button type="button" class="layui-btn layui-btn-sm">新增</button>
-    <div class="layui-input-inline">
-        <input type="text" placeholder="请输入用户名或账号" class="layui-input">
-    </div>
-    <button type="button" class="layui-btn layui-btn-sm layui-btn-normal">查询</button>
+    <button type="button" class="layui-btn layui-btn-sm layui-btn-danger" lay-event="del">删除</button>
+    <button type="button" class="layui-btn layui-btn-sm layui-btn-normal" lay-event="mdf">修改</button>
+    <button type="button" class="layui-btn layui-btn-sm layui-btn-warm" lay-event="useAcc">使用账号</button>
 </script>
 </html>

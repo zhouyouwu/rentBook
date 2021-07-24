@@ -2,25 +2,18 @@ package com.zhouyouwu.model;
 
 import java.math.BigDecimal;
 
+/**
+ * @author Administrator
+ */
 public class User {
 
-    private Long id;
     private String userid;
     private String username;
     private String password;
     private String phoneNo;
     private String idCardNo;
     private String registerTime;
-    private String registerBank;
     private BigDecimal accountBalance;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getUserid() {
         return userid;
@@ -68,14 +61,6 @@ public class User {
 
     public void setRegisterTime(String registerTime) {
         this.registerTime = registerTime;
-    }
-
-    public String getRegisterBank() {
-        return registerBank;
-    }
-
-    public void setRegisterBank(String registerBank) {
-        this.registerBank = registerBank;
     }
 
     public BigDecimal getAccountBalance() {

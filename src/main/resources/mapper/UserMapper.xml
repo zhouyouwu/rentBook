@@ -2,13 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.zhouyouwu.mapper.UserMapper">
     <resultMap id="ShowUser" type="com.zhouyouwu.model.vo.ShowUser">
-        <id property="id" column="id"/>
         <result property="userid" column="userid"/>
         <result property="username" column="username"/>
         <result property="accountBalance" column="account_balance"/>
     </resultMap>
     <select id="getUserById" resultType="com.zhouyouwu.model.User">
-        select * from account_zhoucy
+        select *
+        from account_zhoucy
         where userid = #{userid}
     </select>
 
@@ -22,4 +22,29 @@
         </where>
         order by userid
     </select>
+
+    <insert id="createUser">
+        insert into account_zhoucy
+        values (#{user.userid}, #{user.username},
+                #{user.password},#{user.phoneNo}, #{user.idCardNo},
+                #{user.registerTime}, 0)
+    </insert>
+
+    <delete id="delUser">
+        delete from account_zhoucy
+            where userid = #{userid}
+    </delete>
+
+    <update id="updateUser">
+        update account_zhoucy
+            <set>
+                <if test="user.password">
+                    password = #{user.password},
+                </if>
+                <if test="user.phoneNo">
+                    phone_no = #{user.phoneNo},
+                </if>
+            </set>
+        where userid = #{user.userid}
+    </update>
 </mapper>

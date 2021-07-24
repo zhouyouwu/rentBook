@@ -16,4 +16,14 @@ public interface UserMapper {
     User getUserById(@Param("userid") String userid);
 
     List<ShowUser> getUser(@Param("searchParam") String searchParam);
+
+    void createUser(@Param("user") User user);
+
+    void delUser(@Param("userid") String userid);
+
+    /**
+     * 仅支持修改密码和手机，账号身份证注册时间都是无法更改的
+     * @param user
+     */
+    void updateUser(@Param("user") User user);
 }
