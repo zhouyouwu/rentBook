@@ -17,7 +17,7 @@ layui.use(['element', 'layer', 'table'], function () {
             case 'mdf':
 
             case 'useAcc':
-                useAcc(obj.data.userid);
+                useAcc(obj);
                 break
 
         }
@@ -31,7 +31,7 @@ layui.use(['element', 'layer', 'table'], function () {
         initTable();
     })
 
-    function useAcc(userid) {
+    function useAcc(obj) {
         layer.open({
             title: '登录',
             type: 2,
@@ -42,11 +42,14 @@ layui.use(['element', 'layer', 'table'], function () {
             success: function (layero, index) {
                 let body = layer.getChildFrame('body', index);
                 let user = body.find('#userid');
-                user.val(userid);
+                user.val(obj.data.userid);
             },
             end: function () {
-                if (localStorage.getItem("userid") !== null)
-                    window.parent.$('#setting').find('label').html(userid);
+                if (localStorage.getItem("userid") !== null){
+                    window.parent.$('#setting').find('label').html(obj.data.userid);
+                    obj.tr.find('button')[2].css('display', 'none');
+                    obj.tr.find('button')[3].css('display', '');
+                }
             }
         })
     }

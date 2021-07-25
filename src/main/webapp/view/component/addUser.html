@@ -61,12 +61,16 @@
             user.idCardNo = $('#idCard').val();
             let reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
             if(!reg.test(user.idCardNo)){
-                alert("身份证号不正确");
+                layer.alert("身份证号不正确");
                 return false
             }
             if($('#password1').val() !== user.password){
-                alert("两次输入密码不一致，请检查")
+                layer.alert("两次输入密码不一致，请检查")
                 return false
+            }
+            if(user.password.length !== 6){
+                layer.alert("密码长度只能为6");
+                return false;
             }
             $.ajax({
                 url: '../../createUser.do',

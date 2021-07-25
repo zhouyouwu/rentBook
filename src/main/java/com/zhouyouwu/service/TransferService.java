@@ -45,6 +45,10 @@ public class TransferService {
             throw new UserException("用户不存在");
         }
 
+        if(!user.getPassword().equals(transfer.getPwd())){
+            throw new UserException("密码不正确");
+        }
+
         User linkUser = userMapper.getUserById(transfer.getLinkAccount());
         if(linkUser == null){
             throw new UserException("收款人不存在");

@@ -18,6 +18,7 @@ public class Transfer {
     //操作后余额
     private BigDecimal opBalance;
     private String opDesc;
+    private String pwd;
 
     public String getUserid() {
         return userid;
@@ -81,5 +82,13 @@ public class Transfer {
 
     public void setOpDesc(String opDesc) {
         this.opDesc = opDesc;
+    }
+
+    public String getPwd() {
+        return pwd;
+    }
+
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
     }
 }

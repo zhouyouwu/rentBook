@@ -72,6 +72,12 @@ public class UserController {
         return ResultObject.ok("登录成功！", map);
     }
 
+    @GetMapping("getUserById.do")
+    public Object getUserById(@RequestParam("userid") String userid){
+
+        return ResultObject.ok(userService.getUserById(userid));
+    }
+
     @GetMapping("getUser.do")
     public Object getUser(@RequestParam(value="searchParam", required = false) String searchParam,
                           @RequestParam(value = "page", defaultValue = "1") Integer page,
