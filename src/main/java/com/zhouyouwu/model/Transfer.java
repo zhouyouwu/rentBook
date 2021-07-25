@@ -12,11 +12,12 @@ public class Transfer {
     //本次操作金额
     private BigDecimal amount;
     //1转账，2收款
-    private String opType;
+    private Integer opType;
     private String linkAccount;
     private String linkUsername;
     //操作后余额
     private BigDecimal opBalance;
+    private String opDesc;
 
     public String getUserid() {
         return userid;
@@ -42,11 +43,11 @@ public class Transfer {
         this.amount = amount;
     }
 
-    public String getOpType() {
+    public Integer getOpType() {
         return opType;
     }
 
-    public void setOpType(String opType) {
+    public void setOpType(Integer opType) {
         this.opType = opType;
     }
 
@@ -72,5 +73,13 @@ public class Transfer {
 
     public void setOpBalance(BigDecimal opBalance) {
         this.opBalance = opBalance;
+    }
+
+    public String getOpDesc() {
+        return opDesc;
+    }
+
+    public void setOpDesc(String opDesc) {
+        this.opDesc = opDesc;
     }
 }

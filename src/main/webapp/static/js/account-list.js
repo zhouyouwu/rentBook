@@ -13,7 +13,7 @@ layui.use(['element', 'layer', 'table'], function () {
             case 'del':
                 console.log(obj.data.userid)
                 delUser(obj.data.userid);break
-            case 'search':
+            case 'mdf':
 
         }
     });

@@ -7,6 +7,7 @@ public class TransferSearchParam {
 
     private String linkAccount;
     private String operationTime;
+    //1付款 2收款
     private String opType;
     private Integer page = 1;
     private Integer size = 10;

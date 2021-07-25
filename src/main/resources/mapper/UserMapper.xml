@@ -47,4 +47,10 @@
             </set>
         where userid = #{user.userid}
     </update>
+
+    <update id="updateBalance">
+        update account_zhoucy
+        set account_balance = #{opBalance}
+        where userid = #{userid}
+    </update>
 </mapper>

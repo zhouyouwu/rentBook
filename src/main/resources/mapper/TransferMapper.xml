@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.zhouyouwu.mapper.TransferMapper">
-
     <select id="getTransfer" resultType="com.zhouyouwu.model.Transfer">
         select * from transfer_zhoucy
         where userid = #{userid}
@@ -16,4 +15,11 @@
         </if>
         order by operation_time desc
     </select>
+
+    <insert id="transfer">
+        insert into transfer_zhoucy
+                (userid, operation_time, amount, link_account, link_username, op_balance, op_type, op_desc)
+        values (#{transfer.userid}, #{transfer.operationTime}, #{transfer.amount}, #{transfer.linkAccount},
+                #{transfer.linkUsername}, #{transfer.opBalance}, #{transfer.opType}, #{transfer.opDesc})
+    </insert>
 </mapper>

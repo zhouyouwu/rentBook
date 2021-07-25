@@ -5,6 +5,7 @@ import com.zhouyouwu.model.vo.ShowUser;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -26,4 +27,6 @@ public interface UserMapper {
      * @param user
      */
     void updateUser(@Param("user") User user);
+
+    void updateBalance(@Param("userid") String userid, @Param("opBalance") BigDecimal opBalance);
 }

@@ -14,4 +14,6 @@ import java.util.List;
 public interface TransferMapper {
 
     List<Transfer> getTransfer(@Param("userid") String userid, @Param("searchParam") TransferSearchParam searchParam);
+
+    int transfer(@Param("transfer") Transfer transfer);
 }
