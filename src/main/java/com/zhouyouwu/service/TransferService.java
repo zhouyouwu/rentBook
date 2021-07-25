@@ -27,11 +27,11 @@ public class TransferService {
     @Autowired
     private UserMapper userMapper;
 
-    public PageInfo<Transfer> getTransfer(String userid, TransferSearchParam searchParam) {
+    public PageInfo<Transfer> getTransfer(TransferSearchParam searchParam) {
 
         PageHelper.startPage(searchParam.getPage(), searchParam.getSize());
 
-        return new PageInfo<>(transferMapper.getTransfer(userid, searchParam));
+        return new PageInfo<>(transferMapper.getTransfer(searchParam));
     }
 
     /**

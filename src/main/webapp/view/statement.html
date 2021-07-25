@@ -12,17 +12,17 @@
             <input type="text" id="dateSelect" placeholder="选择时间" class="layui-input">
         </div>
         <div class="layui-input-inline">
-            <select>
+            <select lay-filter="opType">
                 <option value=""></option>
                 <option value="1">转出</option>
                 <option value="2">转入</option>
             </select>
         </div>
         <div class="layui-input-inline">
-            <input type="text" placeholder="相关账户账号" class="layui-input">
+            <input type="text" placeholder="相关账户账号" class="layui-input" id="linkAccount">
         </div>
         <div class="layui-input-inline">
-            <button type="button" class="layui-btn">查询</button>
+            <button type="button" class="layui-btn" id="search">查询</button>
         </div>
     </div>
 </form>

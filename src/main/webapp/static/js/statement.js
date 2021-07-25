@@ -1,18 +1,42 @@
-layui.use(['element', 'layer', 'table', 'laydate'], function () {
+layui.use(['element', 'layer', 'table', 'laydate', 'form'], function () {
 
-    const element = layui.element
+    let element = layui.element
         , layer = layui.layer
         , table = layui.table
         , laydate = layui.laydate
-        , $ = layui.$;
+        , form = layui.form
+        , param = {
+        userid: localStorage.getItem("userid"),
+        linkAccount: undefined,
+        opTimeStart: undefined,
+        opTimeEnd: undefined,
+        opType: undefined
+    };
 
     initTable();
 
     laydate.render({
         elem: '#dateSelect'
-        , type: 'day'
         , format: 'yyyy/MM/dd'
         , range: true
+        , value
+        ,done: function(value, date, endDate){
+            let time = value.split(' - ');
+            param.opTimeStart = time[0].replaceAll('/','-')
+            param.opTimeEnd = time[1].replaceAll('/','-')
+        }
+    })
+
+    form.on('select(opType)', function (data){
+        console.log(data.value)
+        param.opType = data.value;
+
+        return false
+    })
+
+    $('#search').click(function (){
+        param.linkAccount = $('#linkAccount').val();
+        initTable();
     })
 
     function initTable() {
@@ -21,6 +45,7 @@ layui.use(['element', 'layer', 'table', 'laydate'], function () {
             , height: 580
             , width: 1250
             , url: '../getTransfer.do' //数据接口
+            , where: JSON.stringify(param)
             , page: true //开启分页
             , cols: [[ //表头
                 {field: 'userid', title: '账号'}

@@ -13,7 +13,7 @@ import java.util.List;
 @Mapper
 public interface TransferMapper {
 
-    List<Transfer> getTransfer(@Param("userid") String userid, @Param("searchParam") TransferSearchParam searchParam);
+    List<Transfer> getTransfer(@Param("searchParam") TransferSearchParam searchParam);
 
     int transfer(@Param("transfer") Transfer transfer);
 }

@@ -3,12 +3,12 @@
 <mapper namespace="com.zhouyouwu.mapper.TransferMapper">
     <select id="getTransfer" resultType="com.zhouyouwu.model.Transfer">
         select * from transfer_zhoucy
-        where userid = #{userid}
+        where userid = #{searchParam.userid}
         <if test="searchParam.linkAccount != null">
             and link_account = #{searchParam.linkAccount}
         </if>
         <if test="searchParam.operationTime != null">
-            and operation_time = #{searchParam.operationTime}
+            and operation_time between '${searchParam.opTimeStart}%' and '${param1.opTimeEnd}%'
         </if>
         <if test="searchParam.opType != null">
             and op_type = #{searchParam.opType}

@@ -18,6 +18,9 @@
             background: #FFFFFF;
             border-radius: 5px;
         }
+        .layui-form-item{
+            margin-top: 30px;
+        }
     </style>
 </head>
 <body>
@@ -26,13 +29,13 @@
         <div class="layui-form-item">
             <label class="layui-form-label">账号</label>
             <div class="layui-input-block">
-                <input type="text" name="userid" required  lay-verify="required" placeholder="请输入账号" class="layui-input">
+                <input type="text" id="userid" required  lay-verify="required" placeholder="请输入账号" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">密码</label>
             <div class="layui-input-block">
-                <input type="password" name="pwd" required  lay-verify="required" placeholder="请输入密码" class="layui-input">
+                <input type="password" id="pwd" required  lay-verify="required" placeholder="请输入密码" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">

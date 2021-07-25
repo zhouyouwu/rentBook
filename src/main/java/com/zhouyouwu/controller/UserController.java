@@ -11,6 +11,9 @@ import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author Administrator
  */
@@ -37,7 +40,10 @@ public class UserController {
 
         String role = "1".equals(user.getUserid())?"admin":"emp";
         String token = JwtUtil.createJWT(user.getUserid(), role, "", 30*60*60);
-        return ResultObject.ok("登录成功！", token);
+        HashMap<String, String> map = new HashMap<>(2);
+        map.put("token", token);
+        map.put("role", role);
+        return ResultObject.ok("登录成功！", map);
     }
 
     @PostMapping("loginByIdCard.do")
@@ -60,7 +66,10 @@ public class UserController {
 
         String role = "1".equals(user.getUserid())?"admin":"emp";
         String token = JwtUtil.createJWT(user.getUserid(), role, "", 30*60*60);
-        return ResultObject.ok("登录成功！", token);
+        HashMap<String, String> map = new HashMap<>(2);
+        map.put("token", token);
+        map.put("role", role);
+        return ResultObject.ok("登录成功！", map);
     }
 
     @GetMapping("getUser.do")

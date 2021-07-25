@@ -5,12 +5,22 @@ package com.zhouyouwu.model.vo;
  */
 public class TransferSearchParam {
 
+    private String userid;
     private String linkAccount;
-    private String operationTime;
+    private String opTimeStart;
+    private String opTimeEnd;
     //1付款 2收款
     private String opType;
     private Integer page = 1;
     private Integer size = 10;
+
+    public String getUserid() {
+        return userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
+    }
 
     public String getLinkAccount() {
         return linkAccount;
@@ -20,12 +30,20 @@ public class TransferSearchParam {
         this.linkAccount = linkAccount;
     }
 
-    public String getOperationTime() {
-        return operationTime;
+    public String getOpTimeStart() {
+        return opTimeStart;
     }
 
-    public void setOperationTime(String operationTime) {
-        this.operationTime = operationTime;
+    public void setOpTimeStart(String opTimeStart) {
+        this.opTimeStart = opTimeStart;
+    }
+
+    public String getOpTimeEnd() {
+        return opTimeEnd;
+    }
+
+    public void setOpTimeEnd(String opTimeEnd) {
+        this.opTimeEnd = opTimeEnd;
     }
 
     public String getOpType() {

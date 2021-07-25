@@ -19,10 +19,9 @@ public class TransferController {
     private TransferService transferService;
 
     @GetMapping("getTransfer.do")
-    public Object getTransfer(@RequestParam("userid") String userid,
-                              @RequestBody TransferSearchParam searchParam) {
+    public Object getTransfer(@RequestBody TransferSearchParam searchParam) {
 
-        return transferService.getTransfer(userid, searchParam);
+        return transferService.getTransfer(searchParam);
     }
 
     @PostMapping("transfer.do")
