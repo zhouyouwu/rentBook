@@ -18,10 +18,10 @@ public class TransferController {
     @Autowired
     private TransferService transferService;
 
-    @GetMapping("getTransfer.do")
+    @PostMapping("getTransfer.do")
     public Object getTransfer(@RequestBody TransferSearchParam searchParam) {
 
-        return transferService.getTransfer(searchParam);
+        return ResultObject.ok(transferService.getTransfer(searchParam));
     }
 
     @PostMapping("transfer.do")

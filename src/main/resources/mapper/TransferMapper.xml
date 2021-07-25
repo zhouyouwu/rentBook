@@ -2,24 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.zhouyouwu.mapper.TransferMapper">
     <select id="getTransfer" resultType="com.zhouyouwu.model.Transfer">
-        select * from transfer_zhoucy
-        where userid = #{searchParam.userid}
-        <if test="searchParam.linkAccount != null">
-            and link_account = #{searchParam.linkAccount}
+        SELECT * FROM TRANSFER_ZHOUCY
+        WHERE USERID = #{searchParam.userid}
+        <if test="searchParam.linkAccount != null and searchParam.linkAccount != ''">
+            AND LINK_ACCOUNT = #{searchParam.linkAccount}
         </if>
-        <if test="searchParam.operationTime != null">
-            and operation_time between '${searchParam.opTimeStart}%' and '${param1.opTimeEnd}%'
+        <if test="searchParam.opTimeStart != null and searchParam.opTimeStart != ''">
+            AND OPERATION_TIME BETWEEN '${searchParam.opTimeStart}%' AND '${param1.opTimeEnd}%'
         </if>
-        <if test="searchParam.opType != null">
-            and op_type = #{searchParam.opType}
+        <if test="searchParam.opType != null and searchParam.opType != ''">
+            AND OP_TYPE = #{searchParam.opType}
         </if>
-        order by operation_time desc
+        ORDER BY OPERATION_TIME DESC
     </select>
 
     <insert id="transfer">
-        insert into transfer_zhoucy
-                (userid, operation_time, amount, link_account, link_username, op_balance, op_type, op_desc)
-        values (#{transfer.userid}, #{transfer.operationTime}, #{transfer.amount}, #{transfer.linkAccount},
+        INSERT INTO TRANSFER_ZHOUCY
+                (USERID, OPERATION_TIME, AMOUNT, LINK_ACCOUNT, LINK_USERNAME, OP_BALANCE, OP_TYPE, OP_DESC)
+        VALUES (#{transfer.userid}, #{transfer.operationTime}, #{transfer.amount}, #{transfer.linkAccount},
                 #{transfer.linkUsername}, #{transfer.opBalance}, #{transfer.opType}, #{transfer.opDesc})
     </insert>
 </mapper>

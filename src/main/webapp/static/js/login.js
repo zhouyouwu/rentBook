@@ -18,7 +18,9 @@ layui.use(['form', 'layer', 'element'], function () {
                 if (res.code === 0) {
                     layer.msg("登录成功");
                     localStorage.setItem("token", res.result.token)
-                    localStorage.setItem("role", res.result.role)
+                    localStorage.setItem("userid", param.userid)
+                    let index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                    parent.layer.close(index); //再执行关闭
                 } else {
                     layer.alert(res.message)
                 }

@@ -7,50 +7,51 @@
         <result property="accountBalance" column="account_balance"/>
     </resultMap>
     <select id="getUserById" resultType="com.zhouyouwu.model.User">
-        select *
-        from account_zhoucy
-        where userid = #{userid}
+        SELECT *
+        FROM ACCOUNT_ZHOUCY
+        WHERE USERID = #{userid}
     </select>
 
     <select id="getUser" resultMap="ShowUser">
-        select * from account_zhoucy
+        SELECT * FROM ACCOUNT_ZHOUCY
         <where>
-            <if test="searchParam != null">
-                username like '%${searchParam}%'
-                or userid = #{searchParam}
+            <if test="searchParam != null and searchParam != ''">
+                USERNAME LIKE '%${searchParam}%'
+                OR USERID = #{searchParam}
             </if>
         </where>
-        order by userid
+        ORDER BY USERID
     </select>
 
     <insert id="createUser">
-        insert into account_zhoucy
-        values (#{user.userid}, #{user.username},
-                #{user.password},#{user.phoneNo}, #{user.idCardNo},
+        INSERT INTO ACCOUNT_ZHOUCY
+        VALUES (#{user.userid}, #{user.username},
+                #{user.password}, #{user.phoneNo}, #{user.idCardNo},
                 #{user.registerTime}, 0)
     </insert>
 
     <delete id="delUser">
-        delete from account_zhoucy
-            where userid = #{userid}
+        DELETE
+        FROM ACCOUNT_ZHOUCY
+        WHERE USERID = #{userid}
     </delete>
 
     <update id="updateUser">
-        update account_zhoucy
-            <set>
-                <if test="user.password">
-                    password = #{user.password},
-                </if>
-                <if test="user.phoneNo">
-                    phone_no = #{user.phoneNo},
-                </if>
-            </set>
-        where userid = #{user.userid}
+        UPDATE ACCOUNT_ZHOUCY
+        <set>
+            <if test="user.password != null and user.password != ''">
+                PASSWORD = #{user.password},
+            </if>
+            <if test="user.phoneNo != null and user.phoneNo != ''">
+                PHONE_NO = #{user.phoneNo},
+            </if>
+        </set>
+        WHERE USERID = #{user.userid}
     </update>
 
     <update id="updateBalance">
-        update account_zhoucy
-        set account_balance = #{opBalance}
-        where userid = #{userid}
+        UPDATE ACCOUNT_ZHOUCY
+        SET ACCOUNT_BALANCE = #{opBalance}
+        WHERE USERID = #{userid}
     </update>
 </mapper>

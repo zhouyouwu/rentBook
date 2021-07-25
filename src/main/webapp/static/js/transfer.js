@@ -12,7 +12,7 @@ layui.use(['element', 'layer', 'util', 'form'], function () {
             content: './component/account-list-selector.html',
             area: ['500px', '350px'],
             scrollbar: false,
-            closeBtn: 0,
+            closeBtn: 2,
             title: '选择付款账号',
             success: function (layero, index){
                 let body = layer.getChildFrame('body',index);
@@ -28,7 +28,7 @@ layui.use(['element', 'layer', 'util', 'form'], function () {
             content: './component/account-list-selector.html',
             area: ['500px', '350px'],
             scrollbar: false,
-            closeBtn: 0,
+            closeBtn: 2,
             title: '选择收款账号',
             success: function (layero, index){
                 let body = layer.getChildFrame('body',index);

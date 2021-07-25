@@ -8,25 +8,50 @@ layui.use(['element', 'layer', 'table'], function () {
 
     initTable();
 
-    table.on('tool(accountData)', function (obj){
-        switch (obj.event){
+    table.on('tool(accountData)', function (obj) {
+        switch (obj.event) {
             case 'del':
                 console.log(obj.data.userid)
-                delUser(obj.data.userid);break
+                delUser(obj.data.userid);
+                break
             case 'mdf':
+
+            case 'useAcc':
+                useAcc(obj.data.userid);
+                break
 
         }
     });
 
-    $('#addBtn').click(function (){
+    $('#addBtn').click(function () {
         initAddView();
     });
-    $('#searchBtn').click(function (){
+    $('#searchBtn').click(function () {
         searchParam = $('#searchInput').val();
         initTable();
     })
 
-    function delUser(userid){
+    function useAcc(userid) {
+        layer.open({
+            title: '登录',
+            type: 2,
+            content: './login.html',
+            area: ['500px', '350px'],
+            scrollbar: false,
+            closeBtn: 2,
+            success: function (layero, index) {
+                let body = layer.getChildFrame('body', index);
+                let user = body.find('#userid');
+                user.val(userid);
+            },
+            end: function () {
+                if (localStorage.getItem("userid") !== null)
+                    window.parent.$('#setting').find('label').html(userid);
+            }
+        })
+    }
+
+    function delUser(userid) {
         layer.open({
             title: '确定要删除账号？',
             type: 2,
@@ -34,19 +59,19 @@ layui.use(['element', 'layer', 'table'], function () {
             area: ['500px', '350px'],
             scrollbar: false,
             closeBtn: 0,
-            success: function (layero, index){
-                let body = layer.getChildFrame('body',index);
+            success: function (layero, index) {
+                let body = layer.getChildFrame('body', index);
                 let html = body.find('form').find('#title');
                 html.attr('lay-data', userid);
-                html.html('要删除用户'+userid+'，请输入密码或身份证号');
+                html.html('要删除用户' + userid + '，请输入密码或身份证号');
             },
-            end: function (){
+            end: function () {
                 initTable();
             }
         })
     }
 
-    function initAddView(){
+    function initAddView() {
         layer.open({
             type: 2,
             content: './component/addUser.html',
@@ -54,7 +79,7 @@ layui.use(['element', 'layer', 'table'], function () {
             area: ['650px', '400px'],
             scrollbar: false,
             closeBtn: 0,
-            end: function (){
+            end: function () {
                 initTable();
             }
         })
