@@ -15,7 +15,8 @@ layui.use(['element', 'layer', 'table'], function () {
                 delUser(obj.data.userid);
                 break
             case 'mdf':
-
+                initMdfView(obj.data.userid);
+                break
             case 'useAcc':
                 useAcc(obj);
                 break
@@ -45,8 +46,8 @@ layui.use(['element', 'layer', 'table'], function () {
                 user.val(obj.data.userid);
             },
             end: function () {
-                if (localStorage.getItem("userid") !== null){
-                    window.parent.$('#setting').find('label').html(obj.data.userid);
+                if (localStorage.getItem("userid") === obj.data.userid) {
+                    window.parent.$('#setting').find('label').html(obj.data.username);
                     obj.tr.find('button')[2].css('display', 'none');
                     obj.tr.find('button')[3].css('display', '');
                 }
@@ -75,6 +76,7 @@ layui.use(['element', 'layer', 'table'], function () {
     }
 
     function initAddView() {
+
         layer.open({
             type: 2,
             content: './component/addUser.html',
@@ -84,6 +86,42 @@ layui.use(['element', 'layer', 'table'], function () {
             closeBtn: 0,
             end: function () {
                 initTable();
+            }
+        })
+    }
+
+    function initMdfView(userid) {
+        $.ajax({
+            url: '../getUserById.do',
+            method: 'get',
+            data: {userid: userid},
+            success: function (res) {
+                if (res.code === 0) {
+                    layer.open({
+                        type: 2,
+                        content: './component/updateUser.html',
+                        title: '修改资料',
+                        area: ['650px', '400px'],
+                        scrollbar: false,
+                        closeBtn: 0,
+                        success: function (layero, index){
+
+                            let body = layer.getChildFrame('body', index);
+                            body.find('#username').val(res.result.username);
+                            body.find('#phoneNo').val(res.result.phoneNo);
+                            body.find('#idCardNo').val(res.result.idCardNo);
+                            body.find('#registerTime').val(res.result.registerTime);
+                        },
+                        end: function () {
+                            initTable();
+                        }
+                    })
+                } else {
+                    layer.alert(res.message)
+                }
+            },
+            error: function (res) {
+                layer.msg(res)
             }
         })
     }

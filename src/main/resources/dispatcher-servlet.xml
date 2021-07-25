@@ -20,9 +20,11 @@ http://www.springframework.org/schema/mvc http://www.springframework.org/schema/
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
             <bean class="com.zhouyouwu.config.MyInterceptorHandler">
-                <property name="exceptUrls">
+                <property name="Urls">
                     <list>
-                        <value>/login.do</value>
+                        <value>/updateUser.do</value>
+                        <value>/getTransfer.do</value>
+                        <value>/getUserById.do</value>
                     </list>
                 </property>
             </bean>

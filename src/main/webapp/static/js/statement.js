@@ -15,7 +15,7 @@ layui.use(['element', 'layer', 'table', 'laydate', 'form'], function () {
 
     if (param.userid != null) {
         initTable()
-        //getTableData();
+        getTableData();
     } else {
         layer.alert("当前没有登录任何用户")
     }
@@ -41,7 +41,7 @@ layui.use(['element', 'layer', 'table', 'laydate', 'form'], function () {
 
     $('#search').click(function () {
         param.linkAccount = $('#linkAccount').val();
-        getTableData();
+        initTable()
     })
 
     function getTableData() {
@@ -52,17 +52,13 @@ layui.use(['element', 'layer', 'table', 'laydate', 'form'], function () {
             data: JSON.stringify(param),
             contentType: 'application/json',
             headers: {token: localStorage.getItem("token")},
-            success: function (res) {
-                if (res.code === 0) {
-                    initTable(res);
-                } else {
-                    layer.alert(res.message)
-                }
+            error: function (res) {
+                layer.alert(res.message)
             }
         })
     }
 
-    function initTable(data) {
+    function initTable() {
         table.render({
             elem: '#accountData'
             , height: 550
@@ -99,12 +95,22 @@ layui.use(['element', 'layer', 'table', 'laydate', 'form'], function () {
                 , {field: 'opDesc', title: '备注'}
             ]]
             , parseData: function (res) { //res 即为原始返回的数据
-                return {
-                    "code": res.code, //解析接口状态
-                    "msg": res.message, //解析提示文本
-                    "count": res.result.total, //解析数据长度
-                    "data": res.result.list //解析数据列表
-                };
+                if (res.code === 0) {
+                    return {
+                        "code": res.code, //解析接口状态
+                        "msg": res.message, //解析提示文本
+                        "count": res.result.total, //解析数据长度
+                        "data": res.result.list //解析数据列表
+                    };
+                }else {
+                    return {
+                        "code": res.code, //解析接口状态
+                        "msg": res.message, //解析提示文本
+                    };
+                }
+            },
+            error: function (r) {
+                layui.alert(r.message)
             }
         });
     }
